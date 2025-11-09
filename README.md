@@ -1,5 +1,113 @@
 
-# Fonctionnalité : Matching CV → Offres
+
+# Partie I :  Collecte automatique des offres d’emploi – Portal Job Madagascar et Offre emploi (par Erico et Fitia)
+
+-Portal Job : https://www.portaljob-madagascar.com/emploi/liste
+
+-Offe emploi: https://offre-emploi-madagascar.com/newest-jobs-2/jobs
+
+## Description
+
+Cette partie a pour but de **scraper les offres d’emploi publiées sur le site [Portal Job Madagascar](https://www.portaljob-madagascar.com)** afin d’extraire automatiquement les informations importantes (titre, entreprise, profil, missions, référence, etc.) et de les **convertir en un fichier JSON structuré**.
+
+---
+
+## Technologies utilisées
+
+- **Python 3.x**
+- **BeautifulSoup4** – pour extraire les informations HTML
+- **Requests** – pour télécharger les pages du site
+- **JSON** – pour stocker les résultats
+- **Virtualenv** – pour isoler l’environnement Python
+
+---
+
+## Étape 1 : Création et activation de l’environnement virtuel
+
+```bash
+# 1. Créer un environnement virtuel
+python -m venv venv
+
+# 2. Activer l’environnement (selon le système)
+# Sous Windows :
+venv\Scripts\activate
+# Sous macOS / Linux :
+source venv/bin/activate
+
+
+## Webscrapping Offre_emploi
+
+1. Exécutez le script :
+```bash
+python offre_emploi.py
+```
+
+2. Le script affichera les données de chaque offre au fur et à mesure.
+3. Toutes les offres seront enregistrées dans offre_emploi.json.
+
+## Étape 2 : Installation des dépendances
+```
+pip install -r requirements.txt
+```
+## Étape 3 : Scraper les pages du site Portal Job
+- Le script parcourt les 50 premières pages du site :
+```
+    for page in range(1, 51):
+    url = f"https://www.portaljob-madagascar.com/emploi/liste/page/{page}"
+```
+- Chaque page est analysée avec BeautifulSoup :
+```
+soup = BeautifulSoup(response.text, "html.parser")
+details = bloc_principal.find_all("div", class_="item_detail")
+```
+## Étape 4 : Transformation en texte (colonne contenu)
+
+Une fonction offre_to_text() a été créée pour transformer chaque offre en texte compact, utile pour un futur traitement NLP ou embedding :
+
+## Aperçu du code
+```
+def offre_to_text(offre_json):
+    champs = []
+    champs.append(f"Titre: {offre_json.get('titre', 'Non précisé')}")
+    champs.append(f"Entreprise: {offre_json.get('entreprise', 'Non précisée')}")
+    champs.append(f"Contrat: {offre_json.get('contrat', 'Non précisé')}")
+    champs.append(f"Date limite: {offre_json.get('date_limite', 'Non précisée')}")
+    if offre_json.get("profil"):
+        champs.append("Profil: " + ".".join(offre_json["profil"]))
+    result = ", ".join(champs)
+    return {"contenu": result}
+```
+
+
+## Étape 6 : Fichiers générés et réexporte le tout en JSON
+
+```
+import json
+with open("offres_portaljob.json", "w", encoding="utf-8") as f:
+    json.dump(resultats, f, ensure_ascii=False, indent=4)
+```
+
+- Les résultats sont stockés dans une liste puis sauvegardés au format JSON. **(+6524 Offres)** Transformation en texte
+```
+offres-portal-Job-6524.json
+offre_emploi_paginated.json
+```
+
+## Gestion des erreurs
+
+- En cas d'erreur lors de la récupération des détails, le script affiche un message et saute l'offre concernée.
+- En cas d'autres exceptions, le script continue avec l'offre suivante.
+
+
+## Remarques
+
+- Une pause d'une seconde (time.sleep(1)) entre les requêtes est ajoutée pour ne pas surcharger le serveur.
+- Vérification que le scraping respecte les conditions d'utilisation du site.
+
+## lien repository Webscrapping: https://github.com/ericonomena/webscrappingTalentMatch.git
+
+
+# Partie II : Fonctionnalité : Collectes CV, Matching CV → Offres ( par Mélodie et Finaritra)
 
 ## 1. Vue côté utilisateur
 
