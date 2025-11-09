@@ -203,6 +203,7 @@ Le **frontend** est déployé sur la plateforme **Render.com**, qui simplifie le
 3. Le site est ensuite accessible via une URL publique Render (ex. https://front-talentmatch.onrender.com/).
 
 ---
+![alt text](image-1.png)
 
 ## 4. Déploiement du Backend – Google Cloud Run
 
@@ -222,3 +223,4 @@ https://back-talentmatch-2-596715584253.us-central1.run.app/
 
 ---
 
+![alt text](image.png)
