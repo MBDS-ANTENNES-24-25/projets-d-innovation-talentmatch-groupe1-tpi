@@ -1,0 +1,4 @@
+[submodule "Talentmatch-monorepo"]
+	path = Talentmatch-monorepo
+	url = git@github.com:KaloinaMelodie/Talentmatch-monorepo.git
+	branch = main
