@@ -5,6 +5,10 @@
 - **54** - RAZAFIMAHATRATRA Steeve Peraly 
 - **51** - RAVELOMANANTSOA IAINA Nomena Erico 
 
+# Lien vidéo présentation
+```
+https://www.youtube.com/watch?v=wnen4BZduuM
+```
 
 # Partie I :  Collecte automatique des offres d’emploi, Matching Offre => CV – Portal Job Madagascar et Offre emploi (par Erico et Fitia)
 
