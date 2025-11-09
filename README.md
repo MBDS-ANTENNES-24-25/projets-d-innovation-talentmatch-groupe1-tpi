@@ -158,8 +158,8 @@ offre_emploi_paginated.json
 Les utilisateurs peuvent accéder à une fonctionnalité permettant de trouver des candidats correspondant à leur offre. Ils remplissent un formulaire pour l'offre. Une fois le formulaire vérifié et envoyé, le système **analyse des candidats par rapport à l'offre** et **affiche une liste de recommendations de candidats**, triées par **score**.
 ![alt text](match.png)
 
-![alt text](image.png)
-![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
 ## Fonctionnement côté interne
 Le système enregistre d'abord l'offre concerné pour enrichir les données. Ensuite il passe par l'encodage du contenu de l'offre et des cvs. Puis il calcule les similarités entre l'offre et les cvs, et procède au tri décroissant pour les scores de similarités plus élevées et propose aux utilisateurs les top 10 des candidats recommandés.
 
