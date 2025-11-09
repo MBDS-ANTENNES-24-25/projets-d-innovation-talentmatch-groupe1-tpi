@@ -83,52 +83,6 @@ def offre_to_text(offre_json):
     result = ", ".join(champs)
     return {"contenu": result}
 
-
-async def match_cvs_for_offre(offre_id, top_n=None):
-    print("matching")
-    _require_model_ready()
-    model = _get_model()
-
-    offre = await offreService.getOffreById(offre_id)
-    print("Offre ok")
-    cvs = await candidatService.getAllCandidats()
-    print("Candidat ok")
-
-    # Encodage
-    print("Encodage")
-    offre_embedding = model.encode(offre.contenu, convert_to_tensor=True)
-    cv_texts = [cv.contenu for cv in cvs]
-    cv_embeddings = model.encode(cv_texts, convert_to_tensor=True)
-
-    # Similarités
-    print("Similarités")
-
-    scores = util.cos_sim(offre_embedding, cv_embeddings)[0]
-
-    # Tri décroissant
-    print("Tri décroissant")
-    
-    best_idx = scores.argsort(descending=True)
-
-    results = []
-    print("Best")
-
-    for idx in best_idx:
-        score_val = float(scores[idx])
-        if score_val != 0:  
-            candidat = cvs[idx]
-            results.append({
-                "candidat": candidat,
-                "score": score_val,
-            })
-        else:
-            break  
-
-    
-    if top_n is not None:
-        return results[:top_n]
-    return results
-
 ```
 
 
@@ -299,6 +253,7 @@ Le **frontend** est déployé sur la plateforme **Render.com**, qui simplifie le
 3. Le site est ensuite accessible via une URL publique Render (ex. https://front-talentmatch.onrender.com/).
 
 ---
+![alt text](image-1.png)
 
 ## 4. Déploiement du Backend – Google Cloud Run
 
@@ -318,3 +273,4 @@ https://back-talentmatch-2-596715584253.us-central1.run.app/
 
 ---
 
+![alt text](image.png)
