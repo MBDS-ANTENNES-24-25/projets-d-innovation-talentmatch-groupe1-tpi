@@ -1,3 +1,9 @@
+# Talent Match
+- **1** - ANDRIAMAMONJY Fitia Arivony 
+- **8** - ANDRIATAHIANA Vatosoa Finaritra 
+- **52** - RAVOANGILALAO Anjaniaina Kaloina Mélodie 
+- **54** - RAZAFIMAHATRATRA Steeve Peraly 
+- **51** - RAVELOMANANTSOA IAINA Nomena Erico 
 
 
 # Partie I :  Collecte automatique des offres d’emploi, Matching Offre => CV – Portal Job Madagascar et Offre emploi (par Erico et Fitia)
@@ -120,6 +126,50 @@ Le système enregistre d'abord l'offre concerné pour enrichir les données. Ens
 
 # Partie II : Fonctionnalité : Collectes CV, Matching CV → Offres ( par Mélodie et Finaritra)
 
+
+## Vue publique (non connectée)
+
+Lorsqu’un utilisateur accède à la plateforme sans être connecté, il **n’a pas encore accès aux correspondances personnalisées**.  
+Dans ce cas, la plateforme affiche uniquement la **liste globale** des offres ou des candidats.
+
+### 👤 Côté Candidat
+
+Lorsqu’un visiteur consulte la section des offres sans être connecté :
+- Il voit la **liste générale des offres disponibles** (titre, entreprise, type de contrat, résumé, etc.).
+- Une **bannière rouge** l’informe qu’il doit **se connecter ou créer un profil candidat** pour accéder à ses correspondances personnalisées.  
+- Aucun score de similarité n’est affiché dans cette vue.  
+- Cette interface permet néanmoins de **naviguer librement parmi les offres** et de découvrir le fonctionnement de la plateforme.
+
+#### 🔍 Filtres disponibles
+Même sans connexion, le candidat peut affiner sa recherche :
+- **Recherche par mot-clé** : titre, entreprise ou mot spécifique.  
+- **Filtrage par type de contrat** : CDI, CDD, Stage, etc.  
+- **Filtrage par entreprise** : pour cibler un employeur précis.  
+- **Tri** : par pertinence, date ou autres critères.  
+- **Réinitialisation** : pour revenir à la liste complète.
+
+![Vue non connectée – Candidat](image-5.png)
+
+---
+
+### 🏢 Côté Recruteur
+
+Lorsqu’un recruteur accède à la plateforme sans être connecté :
+- Il peut consulter la **liste globale des candidats** enregistrés dans la base.  
+- Une **bannière rouge** l’invite à **se connecter** pour **créer une offre** et **voir les correspondances automatiques** générées par le système.  
+- Les profils affichent les principales informations publiques : **expériences, formations, compétences clés**, etc.  
+- Le recruteur ne voit pas encore les scores ni les correspondances personnalisées.
+
+#### 🔍 Filtres disponibles
+Le recruteur peut également effectuer des recherches :
+- **Recherche par mot-clé** : nom, poste ou compétence.  
+- **Filtrage par formation** : ex. “Master”, “Licence”.  
+- **Filtrage par poste ou compétence** : ex. “Stage”, “Java”, “Finance”.  
+- Ces filtres permettent d’explorer la base globale de candidats sans se connecter.
+
+#### Exemple d’affichage :
+![Vue non connectée – Recruteur](image-4.png)
+
 ## 1. Vue côté utilisateur
 
 Les utilisateurs peuvent accéder à une fonctionnalité permettant de trouver des offres correspondant à leur profil.  
@@ -152,7 +202,11 @@ Le score de pertinence est calculé à partir des vecteurs d’embedding du cand
 
 L’utilisateur obtient une **liste d’offres classées par compatibilité**, avec la possibilité d’examiner chaque offre, avec lien pour postuler.
 
+![Vue connectée – Candidate](image-9.png)
 
+![Vue connectée – Candidate](image-7.png)
+
+![Vue connectée – Candidate](image-8.png)
 
 # Déploiement du Frontend et du Backend
 
@@ -224,4 +278,4 @@ https://back-talentmatch-2-596715584253.us-central1.run.app/
 
 ---
 
-![alt text](image.png)
+![alt text](image-6.png)
