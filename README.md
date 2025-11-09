@@ -202,7 +202,11 @@ Le score de pertinence est calculé à partir des vecteurs d’embedding du cand
 
 L’utilisateur obtient une **liste d’offres classées par compatibilité**, avec la possibilité d’examiner chaque offre, avec lien pour postuler.
 
+![Vue connectée – Candidate](image-9.png)
 
+![Vue connectée – Candidate](image-7.png)
+
+![Vue connectée – Candidate](image-8.png)
 
 # Déploiement du Frontend et du Backend
 
@@ -273,4 +277,4 @@ https://back-talentmatch-2-596715584253.us-central1.run.app/
 
 ---
 
-![alt text](image.png)
+![alt text](image-6.png)
