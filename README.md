@@ -1,6 +1,6 @@
 
 
-# Partie I :  Collecte automatique des offres d’emploi – Portal Job Madagascar et Offre emploi (par Erico et Fitia)
+# Partie I :  Collecte automatique des offres d’emploi, Matching Offre => CV – Portal Job Madagascar et Offre emploi (par Erico et Fitia)
 
 -Portal Job : https://www.portaljob-madagascar.com/emploi/liste
 
@@ -76,40 +76,6 @@ def offre_to_text(offre_json):
         champs.append("Profil: " + ".".join(offre_json["profil"]))
     result = ", ".join(champs)
     return {"contenu": result}
-
-
-async def match_offres_for_cv(cv_id, top_n=None):
-    _require_model_ready()
-    model = _get_model()
-
-    cv_candidat = await candidatService.getCandidatById(cv_id)
-    cv_embedding = model.encode(cv_candidat.contenu, convert_to_tensor=True)
-    offres = await offreService.getAllOffres()
-    offre_texts = [offre.contenu for offre in offres]
-    offre_embeddings= model.encode(offre_texts, convert_to_tensor=True)
-
-    """Retourne les offres les plus pertinentes pour un CV donné"""
-    scores = util.cos_sim(cv_embedding, offre_embeddings)[0]
-    best_idx = scores.argsort(descending=True)
-
-    results = []
-    for idx in best_idx:
-        score_val = float(scores[idx])
-        if score_val != 0:
-            offre = offres[idx]
-            results.append({
-                "offre": offre,
-                "score": score_val,
-            })
-        else:
-            break 
-
-    # 5) Limite top_n si demandée
-    if top_n is not None:
-        return results[:top_n]
-    return results
-
-
 
 
 async def match_cvs_for_offre(offre_id, top_n=None):
@@ -188,6 +154,16 @@ offre_emploi_paginated.json
 ## lien repository Webscrapping: https://github.com/ericonomena/webscrappingTalentMatch.git
 
 
+## Vue côté utilisateur (recruteur)
+Les utilisateurs peuvent accéder à une fonctionnalité permettant de trouver des candidats correspondant à leur offre. Ils remplissent un formulaire pour l'offre. Une fois le formulaire vérifié et envoyé, le système **analyse des candidats par rapport à l'offre** et **affiche une liste de recommendations de candidats**, triées par **score**.
+![alt text](match.png)
+
+![alt text](image.png)
+![alt text](image-1.png)
+## Fonctionnement côté interne
+Le système enregistre d'abord l'offre concerné pour enrichir les données. Ensuite il passe par l'encodage du contenu de l'offre et des cvs. Puis il calcule les similarités entre l'offre et les cvs, et procède au tri décroissant pour les scores de similarités plus élevées et propose aux utilisateurs les top 10 des candidats recommandés.
+
+
 # Partie II : Fonctionnalité : Collectes CV, Matching CV → Offres ( par Mélodie et Finaritra)
 
 ## 1. Vue côté utilisateur
@@ -216,6 +192,7 @@ Lorsqu’un utilisateur choisit d’uploader un fichier **PDF** ou **DOCX** de s
 Le score de pertinence est calculé à partir des vecteurs d’embedding du candidat et des offres, permettant une **recommandation intelligente** et personnalisée.
 
 ---
+
 
 ## 3. Résultat final
 
