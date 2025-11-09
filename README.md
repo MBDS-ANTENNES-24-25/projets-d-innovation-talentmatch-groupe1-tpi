@@ -200,7 +200,8 @@ Le **frontend** est déployé sur la plateforme **Render.com**, qui simplifie le
 
 1. L’image Docker du frontend (kaloina/front-talentmatch:latest) est automatiquement poussée sur Docker Hub via GitHub Actions.
 2. Après le push de l’image, un webhook est déclenché pour redéployer automatiquement la nouvelle version sur Render.
-3. Le site est ensuite accessible via une URL publique Render (ex. https://front-talentmatch.onrender.com/).
+3. Le site est ensuite accessible via une URL publique Render 
+``` https://front-talentmatch.onrender.com/```
 
 ---
 ![alt text](image-1.png)
