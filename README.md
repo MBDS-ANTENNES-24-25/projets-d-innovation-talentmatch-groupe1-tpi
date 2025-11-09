@@ -283,3 +283,19 @@ https://back-talentmatch-2-596715584253.us-central1.run.app/
 ---
 
 ![alt text](image-6.png)
+
+---
+
+## Clones des dépôts
+
+Voici les clones des deux dépôts **privés**, rendus **publics** uniquement à des fins de consultation.  
+Pour des raisons de **sécurité** et d’**assurance des processus**, les dépôts originaux doivent rester **privés**.  
+
+
+```
+https://github.com/Finaritra24/Front-TalentMatch-Public
+```
+
+```
+https://github.com/ericonomena/PublicTalentMath.git
+```
